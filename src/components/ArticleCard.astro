@@ -86,18 +86,26 @@ const viewArticleLabel = isBangla ? 'লেখা দেখুন' : 'View Artic
       )}
     </div>
 
-    {clipping && (
+    {(clipping || externalUrl) && (
       <div class="list-article-action">
-        <button
-          class="button small primary"
-          type="button"
-          data-open-article
-          data-zoom-src={clipping}
-          data-zoom-alt={`${title} newspaper clipping`}
-          aria-label={`Open larger view for ${title}`}
-        >
-          {viewArticleLabel}
-        </button>
+        {clipping && (
+          <button
+            class="button small primary"
+            type="button"
+            data-open-article
+            data-zoom-src={clipping}
+            data-zoom-alt={`${title} newspaper clipping`}
+            aria-label={`Open larger view for ${title}`}
+          >
+            {viewArticleLabel}
+          </button>
+        )}
+
+        {externalUrl && (
+          <a class="button small list-paper-link" href={externalUrl} target="_blank" rel="noreferrer">
+            {originalLabel}
+          </a>
+        )}
       </div>
     )}
   </div>

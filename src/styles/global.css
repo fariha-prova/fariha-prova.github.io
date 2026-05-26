@@ -2409,3 +2409,281 @@ body {
     right: 8px !important;
   }
 }
+
+/* Final mobile compact-list action fix: keep View Article first, Paper Link second, and prevent overflow. */
+.list-paper-link {
+  display: none !important;
+}
+
+.list-view .publication-content {
+  position: relative !important;
+}
+
+.list-view .list-article-action {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 16px !important;
+}
+
+.list-view .list-paper-link {
+  display: inline-flex !important;
+}
+
+.list-view .original-link-top {
+  display: none !important;
+}
+
+.list-view .list-article-action .button,
+.list-view .list-article-action .list-paper-link {
+  position: static !important;
+  min-width: 126px !important;
+  height: 42px !important;
+  padding: 0 1rem !important;
+  border-radius: 999px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.88rem !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.list-view .list-article-action .button.primary {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2)) !important;
+  color: #fff !important;
+  border: 1px solid var(--navy) !important;
+}
+
+.list-view .list-article-action .list-paper-link {
+  background: rgba(255, 253, 247, 0.94) !important;
+  color: var(--navy) !important;
+  border: 1px solid #d8c5aa !important;
+}
+
+@media (max-width: 720px) {
+  .list-view .publication-card {
+    padding: 18px !important;
+  }
+
+  .list-view .publication-content {
+    padding: 0 !important;
+  }
+
+  .list-view .list-article-action {
+    width: 100% !important;
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+
+  .list-view .list-article-action .button,
+  .list-view .list-article-action .list-paper-link {
+    flex: 1 1 150px !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 42px !important;
+    font-size: 0.84rem !important;
+  }
+}
+
+/* Final mobile compact-list card fix: keep actions inside the card bottom */
+@media (max-width: 720px) {
+  .list-view .publication-card {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  .list-view .publication-content {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+    min-height: 0 !important;
+  }
+
+  .list-view .publication-content .pub-tags {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .list-view .publication-card h3 {
+    margin-top: 0 !important;
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .list-view .summary {
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .list-view .pub-meta {
+    margin-top: 12px !important;
+    gap: 8px 12px !important;
+  }
+
+  /* Hide the desktop top-right paper link in mobile compact view. */
+  .list-view .original-link-top {
+    display: none !important;
+  }
+
+  /* Bottom action row: no floating/absolute position. */
+  .list-view .list-article-action {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 16px 0 0 !important;
+    width: 100% !important;
+  }
+
+  .list-view .list-article-action .button,
+  .list-view .list-article-action .list-paper-link {
+    position: static !important;
+    width: auto !important;
+    min-width: 132px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 999px !important;
+    font-size: 0.82rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+
+  .list-view .list-article-action .button.primary {
+    box-shadow: 0 12px 26px rgba(7, 29, 58, 0.16) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .list-view .list-article-action {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .list-view .list-article-action .button,
+  .list-view .list-article-action .list-paper-link {
+    min-width: 0 !important;
+    width: 100% !important;
+    padding: 0 10px !important;
+    font-size: 0.78rem !important;
+  }
+}
+
+/* Final PC compact/list overlap fix: reserve a real action column so text never goes under buttons. */
+@media (min-width: 721px) {
+  .list-view .publication-card {
+    display: block !important;
+  }
+
+  .list-view .publication-content {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "tags actions"
+      "title actions"
+      "summary actions"
+      "meta actions" !important;
+    column-gap: 28px !important;
+    row-gap: 0 !important;
+    align-items: end !important;
+    padding: 16px 20px !important;
+  }
+
+  .list-view .publication-content .pub-tags {
+    grid-area: tags !important;
+    padding: 0 !important;
+    margin: 0 0 9px !important;
+  }
+
+  .list-view .publication-card h3 {
+    grid-area: title !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .list-view .summary {
+    grid-area: summary !important;
+    max-width: 100% !important;
+    margin: 8px 0 0 !important;
+  }
+
+  .list-view .pub-meta {
+    grid-area: meta !important;
+    margin-top: 12px !important;
+  }
+
+  .list-view .original-link-top {
+    display: none !important;
+  }
+
+  .list-view .list-article-action {
+    grid-area: actions !important;
+    position: static !important;
+    align-self: end !important;
+    justify-self: end !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 9px !important;
+    margin: 0 !important;
+    width: auto !important;
+  }
+
+  .list-view .list-article-action .button,
+  .list-view .list-article-action .list-paper-link {
+    width: 116px !important;
+    min-width: 116px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    font-size: 0.78rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .list-view .publication-content {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 16px !important;
+  }
+
+  .list-view .list-article-action {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+
+  .list-view .list-article-action .button,
+  .list-view .list-article-action .list-paper-link {
+    flex: 1 1 145px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 0.82rem !important;
+  }
+}
