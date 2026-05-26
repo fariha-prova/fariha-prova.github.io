@@ -13,7 +13,7 @@ const featured = articles
 const years = [...new Set(featured.map((article) => article.data.date.getFullYear()))].sort((a, b) => b - a);
 ---
 
-<BaseLayout title="Fariha Hossan">
+<BaseLayout title="Fariha Hossan | Professional Writing Portfolio">
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -56,36 +56,10 @@ const years = [...new Set(featured.map((article) => article.data.date.getFullYea
     </div>
   </section>
 
-  <section class="section focus-section">
-    <div class="container info-grid compact-info-grid">
-      <div class="info-card">
-        <span class="eyebrow light">Academic Profile</span>
-        <h2>Biochemistry & Biotechnology</h2>
-        <p>
-          Fariha is a senior B.Sc. student at North South University with academic interests in
-          biochemistry, biotechnology, public health, and science communication.
-        </p>
-      </div>
-
-      <div class="info-card">
-        <span class="eyebrow light">Writing Focus</span>
-        <h2>Journalism & Public Issues</h2>
-        <p>
-          Her articles focus on climate, energy, education, and social issues, with particular
-          attention to Bangladesh and wider South Asian contexts.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <section class="section compact-section">
     <div class="container section-toolbar">
       <div>
         <h2>Published Writing</h2>
-        <p class="small-lead">
-          A professional archive of newspaper clippings and paper links on climate,
-          energy, education, and social issues in Bangladesh and South Asia.
-        </p>
       </div>
 
       <PublicationControls target="home-publications" years={years} showAllLink={false} />
