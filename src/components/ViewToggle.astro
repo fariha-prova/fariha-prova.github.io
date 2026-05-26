@@ -1,0 +1,13 @@
+---
+interface Props {
+  target: string;
+  gridLabel?: string;
+  listLabel?: string;
+}
+const { target, gridLabel = 'Grid', listLabel = 'Compact List' } = Astro.props;
+---
+
+<div class="view-toggle" aria-label="Switch publication view">
+  <button class="active" type="button" data-view="grid" data-view-target={target}>{gridLabel}</button>
+  <button type="button" data-view="list" data-view-target={target}>{listLabel}</button>
+</div>

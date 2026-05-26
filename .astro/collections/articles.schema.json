@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "category": {
+      "type": "string"
+    },
+    "country": {
+      "default": "Bangladesh",
+      "type": "string"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "English",
+        "Bangla"
+      ]
+    },
+    "newspaper": {
+      "type": "string"
+    },
+    "publishedDate": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "clipping": {
+      "type": "string"
+    },
+    "externalUrl": {
+      "type": "string"
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "date",
+    "category",
+    "language",
+    "summary"
+  ]
+}

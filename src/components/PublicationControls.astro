@@ -1,0 +1,47 @@
+---
+import ViewToggle from './ViewToggle.astro';
+
+interface Props {
+  target: string;
+  years: number[];
+  showAllLink?: boolean;
+  locale?: 'en' | 'bn';
+}
+
+const { target, years, showAllLink = false, locale = 'en' } = Astro.props;
+const isBangla = locale === 'bn';
+const toBanglaDigits = (value: number | string) =>
+  String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)]);
+const labels = {
+  grid: isBangla ? 'গ্রিড' : 'Grid',
+  list: isBangla ? 'কমপ্যাক্ট তালিকা' : 'Compact List',
+  year: isBangla ? 'বছর' : 'Year',
+  allYears: isBangla ? 'সব বছর' : 'All Years',
+  sort: isBangla ? 'সাজান' : 'Sort',
+  newest: isBangla ? 'নতুন আগে' : 'Newest First',
+  oldest: isBangla ? 'পুরোনো আগে' : 'Oldest First',
+  allPublications: isBangla ? 'সব প্রকাশনা' : 'All Publications',
+};
+---
+
+<div class="publication-controls" data-controls-for={target}>
+  <ViewToggle target={target} gridLabel={labels.grid} listLabel={labels.list} />
+
+  <label class="control-select-wrap">
+    <span>{labels.year}</span>
+    <select data-year-filter={target} aria-label={labels.year}>
+      <option value="all">{labels.allYears}</option>
+      {years.map((year) => <option value={String(year)}>{isBangla ? toBanglaDigits(year) : year}</option>)}
+    </select>
+  </label>
+
+  <label class="control-select-wrap">
+    <span>{labels.sort}</span>
+    <select data-sort-control={target} aria-label={labels.sort}>
+      <option value="newest">{labels.newest}</option>
+      <option value="oldest">{labels.oldest}</option>
+    </select>
+  </label>
+
+  {showAllLink && <a class="button small" href="/articles">{labels.allPublications}</a>}
+</div>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FH favicon">
+  <rect width="64" height="64" rx="16" fill="#0B2341"/>
+  <path d="M13 18h22v7H21v8h12v7H21v15h-8V18Z" fill="#F7EFE0"/>
+  <path d="M38 18h8v15h9V18h8v37h-8V40h-9v15h-8V18Z" fill="#F7EFE0"/>
+  <path d="M9 58c14-2 24-9 30-20 3-6 8-10 17-12" fill="none" stroke="#D5B98E" stroke-width="3" stroke-linecap="round"/>
+</svg>

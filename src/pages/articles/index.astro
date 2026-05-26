@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import PublicationControls from '../../components/PublicationControls.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const englishArticles = articles.filter((article) => article.data.language === 'English');
+const banglaArticles = articles.filter((article) => article.data.language === 'Bangla');
+const englishYears = [...new Set(englishArticles.map((article) => article.data.date.getFullYear()))].sort((a, b) => b - a);
+const banglaYears = [...new Set(banglaArticles.map((article) => article.data.date.getFullYear()))].sort((a, b) => b - a);
+---
+
+<BaseLayout title="Publications | Fariha Hossan">
+  <section class="page-header">
+    <div class="container">
+      <span class="eyebrow">Writing Portfolio</span>
+      <h1>Publications</h1>
+      <p class="lead">
+        A professional archive of newspaper clippings and paper links on climate,
+        energy, education, and social issues in Bangladesh and South Asia.
+      </p>
+    </div>
+  </section>
+
+  <section class="section article-section">
+    <div class="container language-section-head">
+      <div>
+        <h2>English Publications</h2>
+      </div>
+      <PublicationControls target="english-publications" years={englishYears} />
+    </div>
+
+    <div id="english-publications" class="container publication-grid grid-view">
+      {englishArticles.length > 0 ? (
+        englishArticles.map((article) => <ArticleCard article={article} />)
+      ) : (
+        <p class="empty-text">No English publications added yet.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section article-section">
+    <div class="container language-section-head">
+      <div>
+        <h2>বাংলা প্রকাশনা</h2>
+      </div>
+      <PublicationControls target="bangla-publications" years={banglaYears} locale="bn" />
+    </div>
+
+    <div id="bangla-publications" class="container publication-grid grid-view">
+      {banglaArticles.length > 0 ? (
+        banglaArticles.map((article) => <ArticleCard article={article} />)
+      ) : (
+        <p class="empty-text">এখনো কোনো বাংলা প্রকাশনা যোগ করা হয়নি।</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

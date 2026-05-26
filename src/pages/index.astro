@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import PublicationControls from '../components/PublicationControls.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('articles'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featured = articles
+  .filter((article) => article.data.featured && article.data.language === 'English')
+  .slice(0, 5);
+const years = [...new Set(featured.map((article) => article.data.date.getFullYear()))].sort((a, b) => b - a);
+---
+
+<BaseLayout title="Fariha Hossan | Professional Writing Portfolio">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>Fariha Hossan</h1>
+        <p class="lead">
+          Senior B.Sc. student in Biochemistry & Biotechnology at North South University and
+          part-time journalist writing on climate, energy, education, and social issues across
+          Bangladesh and South Asia.
+        </p>
+
+        <div class="hero-tags">
+          <span>20+ Published Articles</span>
+          <span>8 Years of Writing</span>
+          <span>English & Bangla</span>
+        </div>
+
+        <div class="actions">
+          <a class="button primary" href="/articles">View Publications</a>
+          <a class="button" href="/contact">Contact</a>
+        </div>
+      </div>
+
+      <aside class="profile-panel">
+        <div class="profile-art" aria-hidden="true">
+          <span class="dna-line"></span>
+          <span class="leaf-orbit"></span>
+          <span class="climate-wave"></span>
+          <span class="molecule-dot dot-1"></span>
+          <span class="molecule-dot dot-2"></span>
+          <span class="molecule-dot dot-3"></span>
+        </div>
+
+        <img src="/images/fariha-profile.jpg" alt="Fariha Hossan" class="profile-img" />
+
+        <div class="profile-note">
+          <strong>Journalist &amp; Science Communicator</strong>
+          <span>Biochemistry &amp; Biotechnology, NSU</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section focus-section">
+    <div class="container info-grid compact-info-grid">
+      <div class="info-card">
+        <span class="eyebrow light">Academic Profile</span>
+        <h2>Biochemistry & Biotechnology</h2>
+        <p>
+          Fariha is a senior B.Sc. student at North South University with academic interests in
+          biochemistry, biotechnology, public health, and science communication.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <span class="eyebrow light">Writing Focus</span>
+        <h2>Journalism & Public Issues</h2>
+        <p>
+          Her articles focus on climate, energy, education, and social issues, with particular
+          attention to Bangladesh and wider South Asian contexts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact-section">
+    <div class="container section-toolbar">
+      <div>
+        <span class="eyebrow light">Writing Portfolio</span>
+        <h2>Published Writing</h2>
+        <p class="small-lead">
+          A professional archive of newspaper clippings and paper links on climate,
+          energy, education, and social issues in Bangladesh and South Asia.
+        </p>
+      </div>
+
+      <PublicationControls target="home-publications" years={years} showAllLink={false} />
+    </div>
+
+    <div id="home-publications" class="container publication-grid grid-view">
+      {featured.map((article) => <ArticleCard article={article} />)}
+    </div>
+
+    <div class="container more-publications-wrap">
+      <a class="more-publications-button" href="/articles" aria-label="View all publications">
+        <span>More Publications</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
