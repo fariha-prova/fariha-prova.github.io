@@ -13,7 +13,7 @@ const featured = articles
 const years = [...new Set(featured.map((article) => article.data.date.getFullYear()))].sort((a, b) => b - a);
 ---
 
-<BaseLayout title="Fariha Hossan | Professional Writing Portfolio">
+<BaseLayout title="Fariha Hossan">
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
@@ -81,7 +81,6 @@ const years = [...new Set(featured.map((article) => article.data.date.getFullYea
   <section class="section compact-section">
     <div class="container section-toolbar">
       <div>
-        <span class="eyebrow light">Writing Portfolio</span>
         <h2>Published Writing</h2>
         <p class="small-lead">
           A professional archive of newspaper clippings and paper links on climate,
